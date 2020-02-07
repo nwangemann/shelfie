@@ -1,0 +1,27 @@
+.productImage {
+    width: 300px;
+}
+
+.productParent {
+    display: flex;
+    width: 500px;
+    background-color: #D34735;
+    height: 200px;
+    font-family: 'Open Sans', sans-serif;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.imageFlex {
+    display: flex;
+}
+
+.textFlex {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 30px;
+}

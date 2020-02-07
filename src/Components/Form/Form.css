@@ -1,0 +1,31 @@
+.buttonFlex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.formParent {
+    display: flex;
+    flex-direction: column;
+    background-color: #3AD886;
+    border-radius: 5px;
+    width: 300px;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 20px;
+}
+
+.formButton {
+    margin: 5px 13px;
+    background-color: #D34735;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 15px;
+}
+
+.formImage {
+    width: 200px;
+}
+
+.formInput {
+    width: 250px;
+}
