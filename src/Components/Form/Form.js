@@ -15,17 +15,12 @@ class Form extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('prevProps', prevProps)
-    console.log('prevState', prevState)
-    console.log('current props', this.props)
-    console.log('curProps.currentID', this.props.currentProduct)
+  componentDidUpdate(prevProps) {
     if (prevProps.currentProduct !== this.props.currentProduct) {
       this.setState({
         currentProductID: this.props.currentProduct,
         editDisplay: true
       });
-      console.log('component did update was triggered')
     }
   }
 
@@ -68,6 +63,10 @@ class Form extends Component {
     axios.put(`/api/update/${id}`, updatedProduct).then(res => {
       this.props.getInventory()
     })
+    this.setState({
+      editDisplay: false
+    })
+    this.cancel();
   }
 
   render() {

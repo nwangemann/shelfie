@@ -41,7 +41,6 @@ class App extends Component {
     this.setState({
       currentProductID: id
     })
-    console.log('Reached the parent! id', id)
   }
 
   render(){
