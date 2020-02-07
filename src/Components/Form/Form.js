@@ -48,7 +48,6 @@ class Form extends Component {
   render() {
     return (
       <div className="formParent">
-        Form
         <div className="imageParent">
           <img className="formImage" src={formImage} alt="displayimage" />
         </div>

@@ -13,5 +13,6 @@ massive(CONNECTION_STRING)
 })
 
 app.get('/api/inventory', ctrl.getInventory)
+app.post('/api/product', ctrl.addProduct)
 
 app.listen(SERVER_PORT, () => console.log(`Servin' up some heat on port ${SERVER_PORT}`));

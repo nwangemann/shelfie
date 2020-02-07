@@ -12,6 +12,7 @@
     width: 300px;
     font-family: 'Open Sans', sans-serif;
     margin-top: 20px;
+    height: 500px;
 }
 
 .formButton {
@@ -20,10 +21,13 @@
     border-radius: 4px;
     font-family: 'Open Sans', sans-serif;
     margin-top: 15px;
+    height: 35px;
+    font-weight: bold;
 }
 
 .formImage {
     width: 200px;
+    margin-top: 20px;
 }
 
 .formInput {

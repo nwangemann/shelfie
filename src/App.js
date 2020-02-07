@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from 'axios';
 import "./App.css";
 import Header from "./Components/Header/Header";
 import Form from "./Components/Form/Form";
@@ -9,20 +10,22 @@ class App extends Component {
     super()
 
     this.state = {
-      inventory: [{ 
-        name: 'Dummy item #1', 
-        price: 11, 
-        imgurl: 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60'},
-        { 
-        name: 'Dummy item #2', 
-        price: 22, 
-        imgurl: 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60'},
-        { 
-        name: 'Dummy item #3', 
-        price: 33, 
-        imgurl: 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60'}
-      ]
+      inventory: []
     }
+  }
+
+  componentDidMount(){
+    this.getInventory()
+  }
+
+  getInventory = () => {
+    axios.get('/api/inventory').then(res => {
+      console.log('res.data', res.data)
+      this.setState({
+        inventory: res.data
+      })
+      console.log('this.state.inventory', this.state.inventory)
+    })
   }
 
   render(){

@@ -13,7 +13,7 @@ class Product extends Component {
           <img
             className="productImage"
             src={this.props.imgurl}
-            alt="product image"
+            alt="product"
           />
         </div>
         <div className="textFlex">
