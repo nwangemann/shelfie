@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Form.css";
+import axios from 'axios';
 
 class Form extends Component {
   constructor(props) {
@@ -57,6 +58,18 @@ class Form extends Component {
     this.cancel();
   };
 
+  updateProduct = (e) => {
+    let id = e.target.value
+    let updatedProduct = {
+      name: this.state.name,
+      price: this.state.price,
+      imgurl: this.state.imgurl
+    }
+    axios.put(`/api/update/${id}`, updatedProduct).then(res => {
+      this.props.getInventory()
+    })
+  }
+
   render() {
     return (
       <div className="formParent">
@@ -106,7 +119,9 @@ class Form extends Component {
           </button>
 
           {this.state.editDisplay ? 
-            <button onClick={this.submitForm} className="formButton">
+            <button onClick={this.updateProduct} 
+            value={this.state.currentProductID}
+            className="formButton">
               Save Changes
             </button>
            : 
