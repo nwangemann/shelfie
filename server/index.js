@@ -14,5 +14,7 @@ massive(CONNECTION_STRING)
 
 app.get('/api/inventory', ctrl.getInventory)
 app.post('/api/product', ctrl.addProduct)
+app.delete('/api/delete/:id', ctrl.deleteProduct)
+app.put(`/api/update/:id`, ctrl.updateProduct)
 
 app.listen(SERVER_PORT, () => console.log(`Servin' up some heat on port ${SERVER_PORT}`));

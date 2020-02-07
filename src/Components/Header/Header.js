@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Header.css'
+import logo from './logo.png'
 
 class Header extends Component {
     constructor(){
@@ -10,8 +11,11 @@ class Header extends Component {
 
     render(){
         return(
+            <div className="headerParent">
+                <img src={logo} alt="logo" className="logo" />
             <div className="headerText">
-                SHELFIE
+                <h1>SHELFIE</h1>
+            </div>
             </div>
         )
     }

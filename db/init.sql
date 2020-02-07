@@ -12,3 +12,13 @@ VALUES
 ('DerekName3', 12, 'Sample image text 3'),
 ('KennyName4', 12, 'Sample image text 4');
 
+INSERT INTO products (name, price, img)
+VALUES
+($1, $2, $3);
+
+UPDATE products
+SET name = $1,
+price = $2,
+img = $3
+WHERE 
+id = $4;

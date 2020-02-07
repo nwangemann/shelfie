@@ -1,27 +1,42 @@
 import React, { Component } from "react";
 import "./Form.css";
-import formImage from "./form.JPG";
 
 class Form extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       name: "",
       price: "",
-      imgurl: ""
+      imgurl: "",
+      currentProductID: this.props.currentProductID,
+      editDisplay: false
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('prevProps', prevProps)
+    console.log('prevState', prevState)
+    console.log('current props', this.props)
+    console.log('curProps.currentID', this.props.currentProduct)
+    if (prevProps.currentProduct !== this.props.currentProduct) {
+      this.setState({
+        currentProductID: this.props.currentProduct,
+        editDisplay: true
+      });
+      console.log('component did update was triggered')
+    }
   }
 
   cancel = () => {
     this.setState({
-        name: "",
-        price: "",
-        imgurl: ""
-      });
-  }
+      name: "",
+      price: "",
+      imgurl: ""
+    });
+  };
 
-  handleChange = (e) => {
+  handleChange = e => {
     let { value, name } = e.target;
     this.setState({
       [name]: value
@@ -29,27 +44,28 @@ class Form extends Component {
   };
 
   submitForm = () => {
-    let { name, price, imgurl} = this.state;
-    //this.props.create does not exist, this will have to be modified to fit our schema when we hook up endpoints and structure our CRUD methods**************
-    // this.props.create({
-    //   name,
-    //   price,
-    //   imgurl
-    // });
-    console.log('This is the placeholder for what will become our create method. Working on submit?')
-    this.setState({
-      name: "",
-      price: "",
-      imgurl: ""
+    let { name, price, imgurl } = this.state;
+    this.props.addProduct({
+      name,
+      price,
+      imgurl
     });
+    this.props.getInventory();
+    this.setState({
+      editDisplay: false
+    })
+    this.cancel();
   };
-
 
   render() {
     return (
       <div className="formParent">
         <div className="imageParent">
-          <img className="formImage" src={formImage} alt="displayimage" />
+          <img
+            className="formImage"
+            src="https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+            alt="displayimage"
+          />
         </div>
         <div>
           <p>Image URL:</p>
@@ -85,12 +101,19 @@ class Form extends Component {
           />
         </div>
         <div className="buttonFlex">
-          <button 
-          onClick={this.cancel}
-          className="formButton">Cancel</button>
-          <button 
-          onClick={this.submitForm}
-          className="formButton">Add to Inventory</button>
+          <button onClick={this.cancel} className="formButton">
+            Cancel
+          </button>
+
+          {this.state.editDisplay ? 
+            <button onClick={this.submitForm} className="formButton">
+              Save Changes
+            </button>
+           : 
+            <button onClick={this.submitForm} className="formButton">
+              Add to Inventory
+            </button>
+          }
         </div>
       </div>
     );

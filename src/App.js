@@ -10,7 +10,8 @@ class App extends Component {
     super()
 
     this.state = {
-      inventory: []
+      inventory: [],
+      currentProductID: ''
     }
   }
 
@@ -24,8 +25,23 @@ class App extends Component {
       this.setState({
         inventory: res.data
       })
-      console.log('this.state.inventory', this.state.inventory)
     })
+  }
+
+  addProduct = (newProduct) => {
+    axios.post('/api/product', newProduct).then(res => {
+      this.setState({
+        inventory: res.data
+      })
+    })
+  }
+
+  selectToEdit = (e) => {
+    let id = e.target.value
+    this.setState({
+      currentProductID: id
+    })
+    console.log('Reached the parent! id', id)
   }
 
   render(){
@@ -36,8 +52,14 @@ class App extends Component {
       </div>
       <div className="bodyParent">
         <Dashboard 
+        selectToEdit={this.selectToEdit}
+        getInventory={this.getInventory}
         inventory={this.state.inventory} />
-        <Form />
+        <Form 
+        currentProduct={this.state.currentProductID}
+        getInventory={this.getInventory}
+        addProduct={this.addProduct}
+        />
       </div>
     </div>
   );
